@@ -1,4 +1,5 @@
 import { EventTypeEnum, } from '../types';
+import { u } from '@cityofzion/neon-js';
 export class GeneratorAPI {
     static createGenerator(scriptHash, params) {
         return {
@@ -48,10 +49,8 @@ export class GeneratorAPI {
                         });
                         break;
                     case EventTypeEnum.Value:
-                        formattedPointers.value.push({
-                            type: 'Array',
-                            value: [{ type: 'ByteArray', value: trait.args.value }],
-                        });
+                        // @ts-ignore
+                        formattedPointers.value.push(trait.args);
                         break;
                     case EventTypeEnum.CollectionSampleFrom:
                         formattedPointers.value.push({
@@ -73,11 +72,12 @@ export class GeneratorAPI {
                 ],
             };
         });
+        // TODO: fix generator ID format on contract update
         return {
             scriptHash,
             operation: 'create_trait',
             args: [
-                { type: 'Integer', value: params.generatorId.toString() },
+                { type: 'String', value: u.hexstring2str(u.reverseHex(u.num2hexstring(params.generatorId))) },
                 { type: 'String', value: params.trait.label },
                 { type: 'Integer', value: params.trait.slots.toString() },
                 { type: 'Array', value: formattedLevels },

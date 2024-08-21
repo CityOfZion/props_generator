@@ -1,6 +1,6 @@
 {
   "name": "@cityofzion/props-generator",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A procedural object generator contract and sdk",
   "main": "./dist/cjs/index.js",
   "type": "module",
@@ -32,12 +32,13 @@
     "@cityofzion/neon-dappkit": "^0.4.0",
     "@cityofzion/neon-dappkit-types": "^0.3.1",
     "@cityofzion/neon-js": "^5.3.0",
-    "@cityofzion/neon-core": "^5.0.0-next.16",
     "@types/lodash": "^4.14.176",
     "@types/node": "^16.11.11",
     "save": "^2.9.0"
   },
   "devDependencies": {
+    "@cityofzion/props-collection": "^1.0.0",
+    "@item-systems/item": "^0.3.3",
     "@types/chai": "^4.3.3",
     "@types/expect": "^24.3.0",
     "@types/mocha": "^9.1.1",

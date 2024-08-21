@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GeneratorAPI = void 0;
 const types_1 = require("../types");
+const neon_js_1 = require("@cityofzion/neon-js");
 class GeneratorAPI {
     static createGenerator(scriptHash, params) {
         return {
@@ -51,10 +52,8 @@ class GeneratorAPI {
                         });
                         break;
                     case types_1.EventTypeEnum.Value:
-                        formattedPointers.value.push({
-                            type: 'Array',
-                            value: [{ type: 'ByteArray', value: trait.args.value }],
-                        });
+                        // @ts-ignore
+                        formattedPointers.value.push(trait.args);
                         break;
                     case types_1.EventTypeEnum.CollectionSampleFrom:
                         formattedPointers.value.push({
@@ -76,11 +75,12 @@ class GeneratorAPI {
                 ],
             };
         });
+        // TODO: fix generator ID format on contract update
         return {
             scriptHash,
             operation: 'create_trait',
             args: [
-                { type: 'Integer', value: params.generatorId.toString() },
+                { type: 'String', value: neon_js_1.u.hexstring2str(neon_js_1.u.reverseHex(neon_js_1.u.num2hexstring(params.generatorId))) },
                 { type: 'String', value: params.trait.label },
                 { type: 'Integer', value: params.trait.slots.toString() },
                 { type: 'Array', value: formattedLevels },

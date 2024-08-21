@@ -1,5 +1,4 @@
 import { wallet, rpc } from '@cityofzion/neon-core'
-import { Arg } from '@cityofzion/neon-dappkit-types'
 import { NeonInvoker, NeonParser } from '@cityofzion/neon-dappkit'
 
 export interface ConstructorOptions {
@@ -48,12 +47,10 @@ export interface EventCollectionSampleFrom {
 export interface EventInstanceCall {
   scriptHash: string
   method: string
-  param: Arg[]
+  param: any[]
 }
 
-export interface EventValue {
-  value: string
-}
+export type EventValue = { type: string; value: any }
 
 export interface EventTypeWrapper {
   type: EventTypeEnum

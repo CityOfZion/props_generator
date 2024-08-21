@@ -1,23 +1,5 @@
 import { ConstructorOptions, GeneratorInstanceType, GeneratorType, CreateGenerator, CreateTrait, GetGeneratorInstanceJSON, SetInstanceAccessMode, SetInstanceAuthorizedUsers, SetInstanceAuthorizedContracts, SetInstanceFee } from './types';
 import { rpc } from '@cityofzion/neon-core';
-/**
- * The Collection prop is designed to store static-immutable data for reference in other projects. Storing static data
- * in contracts is very expensive and inefficient, especially for new projects.  This contract resolves that issue by creating
- * library for static data. This class exposes the interface along with a number of helpful features to make the smart
- * contract easy to use for typescript developers.
- *
- * All of the prop helper classes will auto-configure your network settings.  The default configuration will interface with
- * the contract on MainNet, but this can be configured by providing configuration options.
- *
- * To use this class:
- * ```typescript
- * import { Collection } from "../../dist" //import { Collection } from "@cityofzion/props-collection
- *
- * const collection: Collection = new Collection()
- * const total = await collection.totalCollections()
- * console.log(total) // outputs the total collection count in the contract
- * ```
- */
 export declare class Generator {
     private config;
     private initialized;
@@ -50,4 +32,14 @@ export declare class Generator {
     setInstanceFee(params: SetInstanceFee): Promise<string>;
     totalGenerators(): Promise<number>;
     totalGeneratorInstances(): Promise<number>;
+    testFee(params: {
+        generatorId: number;
+        fee: number;
+        count: number;
+    }): Promise<boolean>;
+    optimizeFee(params: {
+        generatorId: number;
+        feeRange?: number[];
+        count?: number;
+    }): Promise<void>;
 }

@@ -14,6 +14,7 @@ import {
   EventValue,
 } from '../types'
 import { Arg, ContractInvocation } from '@cityofzion/neon-dappkit-types'
+import { u } from '@cityofzion/neon-js'
 
 export class GeneratorAPI {
   static createGenerator(scriptHash: string, params: CreateGenerator): ContractInvocation {
@@ -69,10 +70,8 @@ export class GeneratorAPI {
             break
 
           case EventTypeEnum.Value:
-            formattedPointers.value.push({
-              type: 'Array',
-              value: [{ type: 'ByteArray', value: (trait.args as EventValue).value }],
-            })
+            // @ts-ignore
+            formattedPointers.value.push(trait.args as EventValue)
             break
 
           case EventTypeEnum.CollectionSampleFrom:
@@ -97,11 +96,12 @@ export class GeneratorAPI {
       }
     })
 
+    // TODO: fix generator ID format on contract update
     return {
       scriptHash,
       operation: 'create_trait',
       args: [
-        { type: 'Integer', value: params.generatorId.toString() },
+        { type: 'String', value: u.hexstring2str(u.reverseHex(u.num2hexstring(params.generatorId))) },
         { type: 'String', value: params.trait.label },
         { type: 'Integer', value: params.trait.slots.toString() },
         { type: 'Array', value: formattedLevels },
