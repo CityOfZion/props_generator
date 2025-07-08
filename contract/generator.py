@@ -162,7 +162,7 @@ class GeneratorInstance:
 
 @public
 def create_instance(generator_id: bytes) -> int:
-    # creates an generator instance for the user to mint from with extended features
+    # creates a generator instance for the user to mint from with extended features
     tx = cast(Transaction, script_container)
     author: UInt160 = tx.sender
 
@@ -270,7 +270,7 @@ def set_instance_fee(instance_id: bytes, fee: int) -> bool:
 @public
 def get_generator_instance_json(instance_id: bytes) -> Dict[str, Any]:
     """
-    Gets the JSON formatted representation of an generator instance
+    Gets the JSON formatted representation of a generator instance
     :param instance_id: the byte formatted instance_id
     :return: A dictionary representation of an instance_id
     """
@@ -281,9 +281,9 @@ def get_generator_instance_json(instance_id: bytes) -> Dict[str, Any]:
 @public
 def get_generator_instance(instance_id: bytes) -> GeneratorInstance:
     """
-    Gets an GeneratorInstance class instance
+    Gets a GeneratorInstance class instance
     :param instance_id: the byte formatted instance_id
-    :return: An generator instance class instance
+    :return: A generator instance class instance
     """
     instance_bytes: bytes = get_generator_instance_raw(instance_id)
     return cast(GeneratorInstance, StdLib.deserialize(instance_bytes))
@@ -650,7 +650,7 @@ class Trait:
 @public
 def create_trait(generator_id: bytes, label: bytes, slots: int, trait_levels: List) -> bytes:
     """
-    Binds a new trait to an generator
+    Binds a new trait to a generator
     :param generator_id: the generator_id to bind the trait to
     :param label: the trait's label
     :param slots: the maximum number of events that can mint on this trait
@@ -823,9 +823,9 @@ def create_generator(label: bytes, base_generator_fee: int) -> int:
 @public
 def get_generator_json(generator_id: bytes) -> Dict[str, Any]:
     """
-    Gets the JSON formatted representation of an generator
+    Gets the JSON formatted representation of a generator
     :param generator_id: the byte formatted generator_id
-    :return: A dictionary representation of an generator
+    :return: A dictionary representation of a generator
     """
     generator: Generator = get_generator(generator_id)
     return generator.export()
@@ -834,9 +834,9 @@ def get_generator_json(generator_id: bytes) -> Dict[str, Any]:
 @public
 def get_generator(generator_id: bytes) -> Generator:
     """
-    Gets an Generator class instance
+    Gets a Generator class instance
     :param generator_id: the byte formatted generator_id
-    :return: An generator class instance
+    :return: A generator class instance
     """
     generator_bytes: bytes = get_generator_raw(generator_id)
     return cast(Generator, StdLib.deserialize(generator_bytes))
