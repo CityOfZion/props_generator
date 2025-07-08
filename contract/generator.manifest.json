@@ -8,261 +8,287 @@
                 "offset": 0,
                 "parameters": [
                     {
-                        "name": "generator_id",
-                        "type": "ByteArray"
+                        "type": "ByteArray",
+                        "name": "generator_id"
                     }
                 ],
-                "returntype": "Integer",
-                "safe": false
+                "safe": false,
+                "returntype": "Integer"
             },
             {
                 "name": "mint_from_instance",
-                "offset": 86,
+                "offset": 105,
                 "parameters": [
                     {
-                        "name": "from_code",
-                        "type": "ByteArray"
+                        "type": "ByteArray",
+                        "name": "from_code"
                     },
                     {
-                        "name": "to_instance_id",
-                        "type": "ByteArray"
+                        "type": "ByteArray",
+                        "name": "to_instance_id"
                     }
                 ],
+                "safe": false,
                 "returntype": "Map",
-                "safe": false
+                "returngenerickey": {
+                    "type": "String"
+                },
+                "returngenericitem": {
+                    "type": "Any"
+                }
             },
             {
                 "name": "set_instance_authorized_users",
-                "offset": 199,
+                "offset": 201,
                 "parameters": [
                     {
-                        "name": "instance_id",
-                        "type": "ByteArray"
+                        "type": "ByteArray",
+                        "name": "instance_id"
                     },
                     {
-                        "name": "authorized_users",
-                        "type": "Array"
+                        "type": "Array",
+                        "generic": {
+                            "type": "Hash160"
+                        },
+                        "name": "authorized_users"
                     }
                 ],
-                "returntype": "Boolean",
-                "safe": false
+                "safe": false,
+                "returntype": "Boolean"
             },
             {
                 "name": "set_instance_authorized_contracts",
-                "offset": 313,
+                "offset": 296,
                 "parameters": [
                     {
-                        "name": "instance_id",
-                        "type": "ByteArray"
+                        "type": "ByteArray",
+                        "name": "instance_id"
                     },
                     {
-                        "name": "authorized_contracts",
-                        "type": "Array"
+                        "type": "Array",
+                        "generic": {
+                            "type": "Any"
+                        },
+                        "name": "authorized_contracts"
                     }
                 ],
-                "returntype": "Boolean",
-                "safe": false
+                "safe": false,
+                "returntype": "Boolean"
             },
             {
                 "name": "set_instance_access_mode",
-                "offset": 519,
+                "offset": 467,
                 "parameters": [
                     {
-                        "name": "instance_id",
-                        "type": "ByteArray"
+                        "type": "ByteArray",
+                        "name": "instance_id"
                     },
                     {
-                        "name": "access_mode",
-                        "type": "Integer"
+                        "type": "Integer",
+                        "name": "access_mode"
                     }
                 ],
-                "returntype": "Boolean",
-                "safe": false
+                "safe": false,
+                "returntype": "Boolean"
             },
             {
                 "name": "set_instance_fee",
-                "offset": 633,
+                "offset": 562,
                 "parameters": [
                     {
-                        "name": "instance_id",
-                        "type": "ByteArray"
+                        "type": "ByteArray",
+                        "name": "instance_id"
                     },
                     {
-                        "name": "fee",
-                        "type": "Integer"
+                        "type": "Integer",
+                        "name": "fee"
                     }
                 ],
-                "returntype": "Boolean",
-                "safe": false
+                "safe": false,
+                "returntype": "Boolean"
             },
             {
                 "name": "get_generator_instance_json",
-                "offset": 744,
+                "offset": 651,
                 "parameters": [
                     {
-                        "name": "instance_id",
-                        "type": "ByteArray"
+                        "type": "ByteArray",
+                        "name": "instance_id"
                     }
                 ],
+                "safe": false,
                 "returntype": "Map",
-                "safe": false
+                "returngenerickey": {
+                    "type": "String"
+                },
+                "returngenericitem": {
+                    "type": "Any"
+                }
             },
             {
                 "name": "get_generator_instance",
-                "offset": 758,
+                "offset": 665,
                 "parameters": [
                     {
-                        "name": "instance_id",
-                        "type": "ByteArray"
+                        "type": "ByteArray",
+                        "name": "instance_id"
                     }
                 ],
-                "returntype": "Array",
-                "safe": false
+                "safe": false,
+                "returntype": "Array"
             },
             {
                 "name": "total_generator_instances",
-                "offset": 841,
+                "offset": 704,
                 "parameters": [],
-                "returntype": "Integer",
-                "safe": false
+                "safe": false,
+                "returntype": "Integer"
             },
             {
                 "name": "create_trait",
-                "offset": 951,
+                "offset": 797,
                 "parameters": [
                     {
-                        "name": "generator_id",
-                        "type": "ByteArray"
+                        "type": "ByteArray",
+                        "name": "generator_id"
                     },
                     {
-                        "name": "label",
-                        "type": "ByteArray"
+                        "type": "ByteArray",
+                        "name": "label"
                     },
                     {
-                        "name": "slots",
-                        "type": "Integer"
+                        "type": "Integer",
+                        "name": "slots"
                     },
                     {
-                        "name": "trait_levels",
-                        "type": "Array"
+                        "type": "Array",
+                        "generic": {
+                            "type": "Any"
+                        },
+                        "name": "trait_levels"
                     }
                 ],
-                "returntype": "ByteArray",
-                "safe": false
+                "safe": false,
+                "returntype": "ByteArray"
             },
             {
                 "name": "get_trait_json",
-                "offset": 1203,
+                "offset": 990,
                 "parameters": [
                     {
-                        "name": "trait_id",
-                        "type": "ByteArray"
+                        "type": "ByteArray",
+                        "name": "trait_id"
                     }
                 ],
+                "safe": false,
                 "returntype": "Map",
-                "safe": false
+                "returngenerickey": {
+                    "type": "String"
+                },
+                "returngenericitem": {
+                    "type": "Any"
+                }
             },
             {
                 "name": "get_trait",
-                "offset": 1217,
+                "offset": 1004,
                 "parameters": [
                     {
-                        "name": "trait_id",
-                        "type": "ByteArray"
+                        "type": "ByteArray",
+                        "name": "trait_id"
                     }
                 ],
-                "returntype": "Array",
-                "safe": false
+                "safe": false,
+                "returntype": "Array"
             },
             {
                 "name": "total_generators",
-                "offset": 1315,
+                "offset": 1058,
                 "parameters": [],
-                "returntype": "Integer",
-                "safe": false
+                "safe": false,
+                "returntype": "Integer"
             },
             {
                 "name": "create_generator",
-                "offset": 1351,
+                "offset": 1110,
                 "parameters": [
                     {
-                        "name": "label",
-                        "type": "ByteArray"
+                        "type": "ByteArray",
+                        "name": "label"
                     },
                     {
-                        "name": "base_generator_fee",
-                        "type": "Integer"
+                        "type": "Integer",
+                        "name": "base_generator_fee"
                     }
                 ],
-                "returntype": "Integer",
-                "safe": false
+                "safe": false,
+                "returntype": "Integer"
             },
             {
                 "name": "get_generator_json",
-                "offset": 1451,
+                "offset": 1217,
                 "parameters": [
                     {
-                        "name": "generator_id",
-                        "type": "ByteArray"
+                        "type": "ByteArray",
+                        "name": "generator_id"
                     }
                 ],
+                "safe": false,
                 "returntype": "Map",
-                "safe": false
+                "returngenerickey": {
+                    "type": "String"
+                },
+                "returngenericitem": {
+                    "type": "Any"
+                }
             },
             {
                 "name": "get_generator",
-                "offset": 1465,
+                "offset": 1231,
                 "parameters": [
                     {
-                        "name": "generator_id",
-                        "type": "ByteArray"
+                        "type": "ByteArray",
+                        "name": "generator_id"
                     }
                 ],
-                "returntype": "Array",
-                "safe": false
+                "safe": false,
+                "returntype": "Array"
             },
             {
                 "name": "update",
-                "offset": 1622,
+                "offset": 1296,
                 "parameters": [
                     {
-                        "name": "script",
-                        "type": "ByteArray"
+                        "type": "ByteArray",
+                        "name": "script"
                     },
                     {
-                        "name": "manifest",
-                        "type": "ByteArray"
+                        "type": "ByteArray",
+                        "name": "manifest"
                     },
                     {
-                        "name": "data",
-                        "type": "Any"
+                        "type": "Any",
+                        "name": "data"
                     }
                 ],
-                "returntype": "Void",
-                "safe": false
+                "safe": false,
+                "returntype": "Void"
             },
             {
                 "name": "_deploy",
-                "offset": 1773,
+                "offset": 1402,
                 "parameters": [
                     {
-                        "name": "data",
-                        "type": "Any"
+                        "type": "Any",
+                        "name": "data"
                     },
                     {
-                        "name": "update",
-                        "type": "Boolean"
+                        "type": "Boolean",
+                        "name": "update"
                     }
                 ],
-                "returntype": "Void",
-                "safe": false
-            },
-            {
-                "name": "_initialize",
-                "offset": 1811,
-                "parameters": [],
-                "returntype": "Void",
-                "safe": false
+                "safe": false,
+                "returntype": "Void"
             }
         ],
         "events": [
@@ -279,8 +305,30 @@
     },
     "permissions": [
         {
-            "contract": "*",
-            "methods": "*"
+            "contract": "0xacce6fd80d44e1796aa0c2c625e9e4e0ce39efc0",
+            "methods": [
+                "deserialize",
+                "serialize"
+            ]
+        },
+        {
+            "contract": "0xfffdc93764dbaddd97c48f252a53ea4643faa3fd",
+            "methods": [
+                "update"
+            ]
+        },
+        {
+            "contract": "0xacf2aa5d0899e860eebd8b8a5454aa3017543848",
+            "methods": [
+                "get_collection_element",
+                "sample_from_collection"
+            ]
+        },
+        {
+            "contract": "0x16d6a0be0506b26e0826dd352724cda0defa7131",
+            "methods": [
+                "rand_between"
+            ]
         }
     ],
     "trusts": [],
