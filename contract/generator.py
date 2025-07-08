@@ -870,7 +870,7 @@ def update(script: bytes, manifest: bytes, data: Any):
     tx = cast(Transaction, script_container)
     signer: UInt160 = tx.sender
 
-    owner: UInt160 = get(OWNER_KEY)
+    owner: UInt160 = UInt160(get(OWNER_KEY))
 
     assert owner == signer, "User Permission Denied"
 
