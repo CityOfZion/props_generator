@@ -1,14 +1,15 @@
 from typing import Any, Dict, List, cast, Union
-from boa3.builtin import contract, NeoMetadata, metadata, public, CreateNewEvent
-from boa3.builtin.interop.contract import call_contract, update_contract
-from boa3.builtin.interop.stdlib import serialize, deserialize, itoa
-from boa3.builtin.interop.storage import delete, get, put, find, get_context
-from boa3.builtin.interop.runtime import burn_gas, gas_left, get_random, script_container, calling_script_hash, entry_script_hash
-from boa3.builtin.type import UInt160
-from boa3.builtin.interop.blockchain import Transaction
+
+from boa3.sc.compiletime import public, NeoMetadata, contract
+from boa3.sc.utils import CreateNewEvent, call_contract
+from boa3.sc.contracts.stdlib import StdLib
+from boa3.sc.contracts.contractmanagement import ContractManagement
+from boa3.sc.storage import get, put
+from boa3.sc.runtime import burn_gas, gas_left, get_random, script_container, calling_script_hash, entry_script_hash
+from boa3.sc.types import UInt160
+from boa3.sc.types import Transaction
 
 
-@metadata
 def manifest_metadata() -> NeoMetadata:
     """
     Defines this smart contract's metadata information
@@ -93,12 +94,12 @@ class GeneratorInstance:
         raw_payload: bytes = get(key)
         if len(raw_payload) == 0:
             return {}
-        return cast(Dict[str, Any], deserialize(raw_payload))
+        return cast(Dict[str, Any], StdLib.deserialize(raw_payload))
 
     def set_scoped_storage(self, storage_key: bytes, payload: Dict[str, Any]) -> bool:
         instance_key: bytes = mk_generator_instance_key(self._instance_id)
         key: bytes = append_key_stack(instance_key, storage_key)
-        serialized_payload: bytes = serialize(payload)
+        serialized_payload: bytes = StdLib.serialize(payload)
         put(key, serialized_payload)
         return True
 
@@ -285,7 +286,7 @@ def get_generator_instance(instance_id: bytes) -> GeneratorInstance:
     :return: An generator instance class instance
     """
     instance_bytes: bytes = get_generator_instance_raw(instance_id)
-    return cast(GeneratorInstance, deserialize(instance_bytes))
+    return cast(GeneratorInstance, StdLib.deserialize(instance_bytes))
 
 
 def get_generator_instance_raw(instance_id: bytes) -> bytes:
@@ -311,7 +312,7 @@ def total_generator_instances() -> int:
 
 def save_generator_instance(generator_instance: GeneratorInstance) -> bool:
     instance_id: bytes = generator_instance.get_id()
-    put(mk_generator_instance_key(instance_id), serialize(generator_instance))
+    put(mk_generator_instance_key(instance_id), StdLib.serialize(generator_instance))
     return True
 
 
@@ -679,7 +680,7 @@ def create_trait(generator_id: bytes, label: bytes, slots: int, trait_levels: Li
 
 def save_trait(trait: Trait) -> bool:
     trait_id: bytes = trait.get_id()
-    put(mk_trait_key(trait_id), serialize(trait))
+    put(mk_trait_key(trait_id), StdLib.serialize(trait))
     return True
 
 
@@ -697,7 +698,7 @@ def get_trait_json(trait_id: bytes) -> Dict[str, Any]:
 @public
 def get_trait(trait_id: bytes) -> Trait:
     trait_bytes: bytes = get_trait_raw(trait_id)
-    return cast(Trait, deserialize(trait_bytes))
+    return cast(Trait, StdLib.deserialize(trait_bytes))
 
 
 def get_trait_raw(trait_id: bytes) -> bytes:
@@ -838,7 +839,7 @@ def get_generator(generator_id: bytes) -> Generator:
     :return: An generator class instance
     """
     generator_bytes: bytes = get_generator_raw(generator_id)
-    return cast(Generator, deserialize(generator_bytes))
+    return cast(Generator, StdLib.deserialize(generator_bytes))
 
 
 def get_generator_raw(generator_id: bytes) -> bytes:
@@ -852,7 +853,7 @@ def get_generator_raw(generator_id: bytes) -> bytes:
 
 def save_generator(generator: Generator) -> bool:
     generator_id: bytes = generator.get_id()
-    put(mk_generator_key(generator_id), serialize(generator))
+    put(mk_generator_key(generator_id), StdLib.serialize(generator))
     return True
 
 
@@ -873,7 +874,7 @@ def update(script: bytes, manifest: bytes, data: Any):
 
     assert owner == signer, "User Permission Denied"
 
-    update_contract(script, manifest, data)
+    ContractManagement.update(script, manifest, data)
 
 
 @public
